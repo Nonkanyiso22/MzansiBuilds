@@ -1,0 +1,95 @@
+﻿@model IEnumerable<MzansiBuilds.Models.Project>
+
+@{
+    ViewData["Title"] = "MzansiBuilds - Feed";
+}
+
+<h2 class="text-success text-center mb-4">MzansiBuilds - Feed</h2>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Create New Project</a>
+    <a class="btn btn-dark float-end" asp-action="CelebrationWall">🎉 Celebration Wall</a>
+</p>
+
+@foreach (var project in Model)
+{
+    <div class="card mb-3" style="border: 2px solid black; background-color:white;">
+        <div class="card-header text-white" style="background-color:green;">
+            <strong>@project.Title</strong>
+            <span class="float-end">Stage: @project.Stage</span>
+        </div>
+        <div class="card-body">
+            <p>@project.Description</p>
+            <p><strong>Owner:</strong> @project.UserId</p>
+
+            <!-- Milestones -->
+            <div class="mt-2">
+                <h6>Milestones:</h6>
+                @if (project.Milestones.Count > 0)
+                {
+                    <ul>
+                        @foreach (var m in project.Milestones)
+                        {
+                            <li>@m.Description (@m.AchievedAt.ToShortDateString())</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+
+                    <p>No milestones yet.</p>
+                }
+            </div>
+
+            <!-- Comments -->
+            <div class="mt-2">
+                <h6>Comments:</h6>
+                @if (project.Comments.Count > 0)
+                {
+                    <ul>
+                        @foreach (var c in project.Comments)
+                        {
+                            <li><strong>@c.UserId:</strong> @c.Content</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+
+                    <p>No comments yet.</p>
+                }
+            </div>
+
+            <!-- Add Comment -->
+            <form asp-action="AddComment" method="post" class="mt-2">
+                <input type="hidden" name="ProjectId" value="@project.Id" />
+                <input type="text" name="Content" class="form-control mb-2" placeholder="Add a comment..." required />
+                <button type="submit" class="btn btn-sm btn-primary">Post Comment</button>
+            </form>
+
+            <!-- Add Milestone -->
+            <form asp-action="AddMilestone" method="post" class="mt-2">
+                <input type="hidden" name="ProjectId" value="@project.Id" />
+                <input type="text" name="Description" class="form-control mb-2" placeholder="Add a milestone..." required />
+                <button type="submit" class="btn btn-sm btn-info">Add Milestone</button>
+            </form>
+
+            <!-- Raise Hand / Collaboration -->
+            <form asp-action="RequestCollaboration" method="post" class="mt-2">
+                <input type="hidden" name="ProjectId" value="@project.Id" />
+                <button type="submit" class="btn btn-warning btn-sm">
+                    @(project.CollaborationRequested ? "Collaboration Requested" : "Raise Hand")
+                </button>
+            </form>
+
+            <!-- Mark as Completed (only for project owner and if not already completed) -->
+            @if (project.Stage != "Completed" && project.UserId == User.Identity.Name)
+            {
+                <form asp-action="MarkCompleted" method="post" class="mt-2">
+                    <input type="hidden" name="ProjectId" value="@project.Id" />
+                    <button type="submit" class="btn btn-success btn-sm">Mark as Completed</button>
+                </form>
+            }
+        </div>
+    </div>
+}

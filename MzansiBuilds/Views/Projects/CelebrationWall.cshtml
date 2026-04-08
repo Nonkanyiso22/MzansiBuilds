@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MzansiBuilds.Models.Project>
+
+@{
+    ViewData["Title"] = "Celebration Wall";
+}
+
+<h2 class="text-success text-center mb-4">🎉 Celebration Wall 🎉</h2>
+
+@if (!Model.Any())
+{
+    <p class="text-center">No projects completed yet. Keep building in public! 🚀</p>
+}
+else
+{
+    <div class="row">
+        @foreach (var project in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card border-success" style="background-color:white;">
+                    <div class="card-header text-white" style="background-color:green;">
+                        <strong>@project.Title</strong>
+                        <span class="float-end">@project.CreatedAt.ToShortDateString()</span>
+                    </div>
+                    <div class="card-body">
+                        <p>@project.Description</p>
+                        <p><strong>Owner:</strong> @project.UserId</p>
+
+                        <!-- Milestones -->
+                        @if (project.Milestones.Count > 0)
+                        {
+                            <h6>Milestones Achieved:</h6>
+                            <ul>
+                                @foreach (var m in project.Milestones)
+                                {
+                                    <li>@m.Description (@m.AchievedAt.ToShortDateString())</li>
+                                }
+                            </ul>
+                        }
+
+                        <!-- Comments -->
+                        @if (project.Comments.Count > 0)
+                        {
+                            <h6>Comments:</h6>
+                            <ul>
+                                @foreach (var c in project.Comments)
+                                {
+                                    <li><strong>@c.UserId:</strong> @c.Content</li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
