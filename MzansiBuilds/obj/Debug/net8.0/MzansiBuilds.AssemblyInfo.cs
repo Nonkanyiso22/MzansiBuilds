@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MzansiBuilds")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1788e037117c651f1aafdb2011c653a6ef1781c")]
 [assembly: System.Reflection.AssemblyProductAttribute("MzansiBuilds")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MzansiBuilds")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
