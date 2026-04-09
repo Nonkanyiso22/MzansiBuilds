@@ -1,58 +1,85 @@
 ﻿@model MzansiBuilds.Models.Project
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Project";
 }
 
-<h1>Create</h1>
+<div class="container mt-4">
 
-<h4>Project</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Title" class="control-label"></label>
-                <input asp-for="Title" class="form-control" />
-                <span asp-validation-for="Title" class="text-danger"></span>
+    <!-- PAGE HEADER -->
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">🚀 Create New Project</h1>
+        <p class="text-muted">Share your idea and start building with the community</p>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 shadow-soft">
+
+                <form asp-action="Create">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <!-- TITLE -->
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label fw-semibold"></label>
+                        <input asp-for="Title" class="form-control" placeholder="Enter project title" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <!-- DESCRIPTION -->
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label fw-semibold"></label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Describe your project"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <!-- STAGE -->
+                    <div class="mb-3">
+                        <label asp-for="Stage" class="form-label fw-semibold"></label>
+                        <select asp-for="Stage" class="form-control">
+                            <option value="">-- Select Stage --</option>
+                            <option>Idea</option>
+                            <option>Planning</option>
+                            <option>Development</option>
+                            <option>Testing</option>
+                            <option>Completed</option>
+                        </select>
+                        <span asp-validation-for="Stage" class="text-danger"></span>
+                    </div>
+
+                    <!-- SUPPORT NEEDED -->
+                    <div class="mb-3">
+                        <label asp-for="SupportNeeded" class="form-label fw-semibold"></label>
+                        <input asp-for="SupportNeeded" class="form-control" placeholder="e.g. Frontend help, UI design..." />
+                        <span asp-validation-for="SupportNeeded" class="text-danger"></span>
+                    </div>
+
+                    <!-- HIDDEN FIELDS (AUTO HANDLED) -->
+                    <input type="hidden" asp-for="CreatedAt" />
+                    <input type="hidden" asp-for="UserId" />
+
+                    <!-- BUTTONS -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-action="Index" class="btn btn-outline-dark">
+                            ← Back
+                        </a>
+
+                        <button type="submit" class="btn btn-success">
+                            ✅ Create Project
+                        </button>
+                    </div>
+
+                </form>
+
             </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Stage" class="control-label"></label>
-                <input asp-for="Stage" class="form-control" />
-                <span asp-validation-for="Stage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SupportNeeded" class="control-label"></label>
-                <input asp-for="SupportNeeded" class="form-control" />
-                <span asp-validation-for="SupportNeeded" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedAt" class="control-label"></label>
-                <input asp-for="CreatedAt" class="form-control" />
-                <span asp-validation-for="CreatedAt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserId" class="control-label"></label>
-                <input asp-for="UserId" class="form-control" />
-                <span asp-validation-for="UserId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

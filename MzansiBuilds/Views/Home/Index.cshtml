@@ -1,8 +1,62 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- HERO SECTION -->
+<div class="hero text-center shadow-soft">
+    <h1 class="display-4 fw-bold">Welcome to MzansiBuilds 🚀</h1>
+    <p class="lead mt-3">
+        Build, showcase, and collaborate on software projects across South Africa.
+    </p>
+
+    <div class="mt-4">
+        <a asp-controller="Projects" asp-action="Index" class="btn btn-light btn-lg me-2">
+            View Projects
+        </a>
+        <a asp-controller="Projects" asp-action="Create" class="btn btn-dark btn-lg">
+            Start a Project
+        </a>
+    </div>
 </div>
+
+<!-- FEATURES SECTION -->
+<div class="row text-center mt-5">
+
+    <div class="col-md-4">
+        <div class="card p-4 shadow-soft">
+            <h3 class="text-success">📂 Project Tracking</h3>
+            <p>
+                Create and manage your projects with clear progress tracking and structured milestones.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4 shadow-soft">
+            <h3 class="text-success">💬 Collaboration</h3>
+            <p>
+                Engage with other developers by commenting, sharing ideas, and requesting collaboration.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card p-4 shadow-soft">
+            <h3 class="text-success">🏆 Celebrate Progress</h3>
+            <p>
+                Showcase completed milestones and achievements on the Celebration Wall.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<!-- CALL TO ACTION -->
+<div class="text-center mt-5">
+    <h2 class="fw-bold">Ready to build something amazing?</h2>
+    <p class="mb-4">Start your journey and share your progress with the world.</p>
+
+    <a asp-controller="Projects" asp-action="Create" class="btn btn-success btn-lg">
+        Create Your First Project
+    </a>
+</div>S

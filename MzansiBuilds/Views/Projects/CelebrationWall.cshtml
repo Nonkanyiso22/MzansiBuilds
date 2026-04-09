@@ -4,53 +4,85 @@
     ViewData["Title"] = "Celebration Wall";
 }
 
-<h2 class="text-success text-center mb-4">🎉 Celebration Wall 🎉</h2>
+<div class="container mt-4">
 
-@if (!Model.Any())
-{
-    <p class="text-center">No projects completed yet. Keep building in public! 🚀</p>
-}
-else
-{
-    <div class="row">
-        @foreach (var project in Model)
-        {
-            <div class="col-md-6 mb-4">
-                <div class="card border-success" style="background-color:white;">
-                    <div class="card-header text-white" style="background-color:green;">
-                        <strong>@project.Title</strong>
-                        <span class="float-end">@project.CreatedAt.ToShortDateString()</span>
-                    </div>
-                    <div class="card-body">
-                        <p>@project.Description</p>
-                        <p><strong>Owner:</strong> @project.UserId</p>
-
-                        <!-- Milestones -->
-                        @if (project.Milestones.Count > 0)
-                        {
-                            <h6>Milestones Achieved:</h6>
-                            <ul>
-                                @foreach (var m in project.Milestones)
-                                {
-                                    <li>@m.Description (@m.AchievedAt.ToShortDateString())</li>
-                                }
-                            </ul>
-                        }
-
-                        <!-- Comments -->
-                        @if (project.Comments.Count > 0)
-                        {
-                            <h6>Comments:</h6>
-                            <ul>
-                                @foreach (var c in project.Comments)
-                                {
-                                    <li><strong>@c.UserId:</strong> @c.Content</li>
-                                }
-                            </ul>
-                        }
-                    </div>
-                </div>
-            </div>
-        }
+    <!-- HEADER -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-success">🎉 Celebration Wall</h1>
+        <p class="text-muted">Showcasing completed projects and achievements</p>
     </div>
-}
+
+    @if (!Model.Any())
+    {
+        <div class="text-center">
+            <p>No projects completed yet. Keep building in public! 🚀</p>
+        </div>
+    }
+    else
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                @foreach (var project in Model)
+                {
+                    <div class="card mb-4 shadow-soft">
+
+                        <!-- HEADER -->
+                        <div class="card-header d-flex justify-content-between align-items-center bg-success text-white">
+                            <h5 class="mb-0">@project.Title</h5>
+                            <small>@project.CreatedAt.ToString("yyyy-MM-dd")</small>
+                        </div>
+
+                        <!-- BODY -->
+                        <div class="card-body">
+
+                            <!-- DESCRIPTION -->
+                            <p class="text-muted">@project.Description</p>
+
+                            <!-- OWNER -->
+                            <p><strong>👤 Owner:</strong> @project.UserId</p>
+
+                            <!-- MILESTONES -->
+                            @if (project.Milestones != null && project.Milestones.Any())
+                            {
+                                <div class="mt-3">
+                                    <h6 class="text-success">🏆 Milestones Achieved</h6>
+                                    <ul class="list-group list-group-flush">
+                                        @foreach (var m in project.Milestones)
+                                        {
+                                            <li class="list-group-item">
+                                                ✅ @m.Description
+                                                <small class="text-muted d-block">
+                                                    @m.AchievedAt.ToString("yyyy-MM-dd")
+                                                </small>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+
+                            <!-- COMMENTS -->
+                            @if (project.Comments != null && project.Comments.Any())
+                            {
+                                <div class="mt-3">
+                                    <h6 class="text-success">💬 Community Feedback</h6>
+                                    <ul class="list-group list-group-flush">
+                                        @foreach (var c in project.Comments)
+                                        {
+                                            <li class="list-group-item">
+                                                <strong>@c.UserId:</strong> @c.Content
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+                }
+
+            </div>
+        </div>
+    }
+</div>
