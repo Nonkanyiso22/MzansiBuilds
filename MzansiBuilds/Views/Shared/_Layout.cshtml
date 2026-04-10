@@ -12,64 +12,68 @@
 
 <body>
 
-    <!-- Top Accent Line -->
-    <div style="height: 4px; background: linear-gradient(to right, #28a745, #000);"></div>
+    <div class="page-wrapper">
 
-    <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
+        <!-- Top Accent Line -->
+        <div style="height: 4px; background: linear-gradient(to right, #28a745, #000);"></div>
 
-                <!-- Logo -->
-                <a class="navbar-brand text-white fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
-                    MzansiBuilds
-                </a>
+        <header>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
 
-                <!-- Toggle -->
-                <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <!-- Logo -->
+                    <a class="navbar-brand text-white fw-bold" asp-area="" asp-controller="Home" asp-action="Index">
+                        MzansiBuilds
+                    </a>
 
-                <!-- Links -->
-                <div class="collapse navbar-collapse" id="navbarContent">
+                    <!-- Toggle -->
+                    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                    <ul class="navbar-nav me-auto">
+                    <!-- Links -->
+                    <div class="collapse navbar-collapse" id="navbarContent">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
+                        <ul class="navbar-nav me-auto">
 
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Projects" asp-action="Index">Projects</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-controller="Projects" asp-action="CelebrationWall">Celebration Wall</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Projects" asp-action="Index">Projects</a>
+                            </li>
 
-                    </ul>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Projects" asp-action="CelebrationWall">Celebration Wall</a>
+                            </li>
 
-                    <!-- Login/Register -->
-                    <partial name="_LoginPartial" />
+                        </ul>
 
+                        <!-- Login/Register -->
+                        <partial name="_LoginPartial" />
+
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
-    <!-- Main Content -->
-    <div class="container mt-4">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <!-- Footer -->
-    <footer class="border-top footer text-muted mt-5">
-        <div class="container text-center py-3">
-            &copy; 2026 - <strong>MzansiBuilds</strong> |
-            <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <!-- Main Content -->
+        <div class="container mt-4 content">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+
+        <!-- Footer -->
+        <footer class="border-top footer text-muted">
+            <div class="container text-center py-2">
+                &copy; 2026 - <strong>MzansiBuilds</strong> |
+                <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+
+    </div>
 
     <!-- Scripts -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

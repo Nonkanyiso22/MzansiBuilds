@@ -1,4 +1,4 @@
-/* Base font settings */
+﻿/* Base font settings */
 html {
     font-size: 14px;
 }
@@ -16,7 +16,7 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
+    margin-bottom: 60px; 
     background-color: #f5f7f6; /* light neutral */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -93,8 +93,9 @@ input:focus, textarea:focus {
 .footer {
     background-color: #0f172a;
     color: #ffffff;
-    padding: 15px 0;
     text-align: center;
+    padding: 10px 0; 
+    position: relative; 
 }
 
     .footer a {
@@ -136,4 +137,15 @@ h1, h2, h3 {
 /* ================= SHADOW UTIL ================= */
 .shadow-soft {
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* ================= FIX FOOTER LAYOUT ================= */
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
 }
